@@ -33,7 +33,7 @@ class BMSClient(models.Model):
                     .get_param('database.uuid'),
                    'oikos_key':self.key}
         
-        url =self.env["ir.config_parameter"].sudo().get_param('oikos.api.url')+"bmscore/keyauth"
+        url =self.env["ir.config_parameter"].sudo().get_param('oikoschain_api_url')+"bmscore/keyauth"
         response_load = requests.post(url, headers=headers, data=json.dumps({}))
         
         if response_load.status_code == 200:
@@ -42,7 +42,6 @@ class BMSClient(models.Model):
             if keys_information['status'] == 0:
                 self.granted_until = keys_information['data'][0]['active_until']
                 self.status = keys_information['data'][0]['status_account']
-                print(self)
                 self.env['bms.client'].search([('id','=',self.ids[0])]).\
                     write({'granted_until':keys_information['data'][0]['active_until'],
                            'status':keys_information['data'][0]['status_account']})
