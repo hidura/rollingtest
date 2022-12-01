@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Menus -->
+    <menuitem
+        id="bmsuite_client_root"
+        name="BMSUITE Client"
+        web_icon="point_of_sale,static/description/icon.png"
+        sequence="15"/>
+
+
+    <record id="action_bmsuite_key_register" model="ir.actions.act_window">
+        <field name="name">BMSUITE Client</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">bms.client</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Register your BMSUITE Key
+          </p><p>
+
+          </p>
+        </field>
+    </record>
+
+
+    <record id="bmsuite_key_register_tree_view" model="ir.ui.view">
+        <field name="name">bms.client.tree</field>
+        <field name="model">bms.client</field>
+        <field name="arch" type="xml">
+            <tree string="Tus llaves activas de BMSUITE" multi_edit="1">
+                <field name="name" string="Nombre" readonly="1"/>
+                <field name="key" string="Llave" readonly="1"/>
+                <field name="granted_until" string="Otorgada hasta" readonly="1"/>
+                <field name="status" string="Estado" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="oikos_connection_form_view" model="ir.ui.view">
+        <field name="name">bms.client.form</field>
+        <field name="model">bms.client</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de registro de OikosChain">
+                <sheet>
+                    <group col="4" string="Connection Information">
+                        <field name="name" string="Nombre"/>
+                        <field name="key"  string="Key"/>
+                    </group>
+                    <group>
+                        <group string="Informacion de la llave">
+                            <field name="granted_until" string="Disponible hasta"/>
+                            <field name="status" string="Estado"/>
+                            <button name="action_validate" type="object" string="Validar" icon="fa-key"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+            
+    <menuitem
+        id="action_bmsuite_key_register"
+        name="Llaves de BMSUITE"
+        parent="bmsuite_client_root"
+        action="action_bmsuite_key_register"/>
+
+
+
+
+
+    
+</odoo>
