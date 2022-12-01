@@ -60,7 +60,7 @@
     
             
     <menuitem
-        id="action_bmsuite_key_register"
+        id="action_bmsuite_key"
         name="Llaves de BMSUITE"
         parent="bmsuite_client_root"
         action="action_bmsuite_key_register"/>
