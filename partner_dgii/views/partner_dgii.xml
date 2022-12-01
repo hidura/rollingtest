@@ -1,0 +1,34 @@
+<odoo>
+  <record id="patner_dgii_data" model="ir.actions.act_window">
+        <field name="name">Partner Dgii </field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.dgii</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Adjunta los nuevos Registros de la DGII.
+          </p><p>
+
+          </p>
+        </field>
+    </record>
+    <record id="patner_dgii_tree_view" model="ir.ui.view">
+        <field name="name">partner.dgii.tree</field>
+        <field name="model">partner.dgii</field>
+        <field name="arch" type="xml">
+            <tree string="Partners" multi_edit="1">
+                <field name="name" string="Nombre"/>
+                <field name="rnc" string="RNC" readonly="1"/>
+                <field name="state" string="Estado" readonly="1"/>
+                <field name="payment_regime" string="Regimen de pago" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem
+        id="rnc_register"
+        name="RNC registrados en la DGII"
+        sequence="15"
+        parent="account.account_account_menu"
+        action="patner_dgii_data"/>
+</odoo>

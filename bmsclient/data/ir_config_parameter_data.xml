@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="oikoschain_api_url" model="ir.config_parameter">
+        <field name="key">oikos.api.url</field>
+        <field name="value">http://localhost:2462/</field>
+    </record>
+
+</odoo>
