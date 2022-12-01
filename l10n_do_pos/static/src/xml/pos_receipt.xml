@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt-contact')]" position="inside">
+            <t t-if='receipt.client'>
+                <div style="font-weight:bold;">Customer:
+                    <t t-esc='receipt.client.name' />
+                </div>
+                <t t-if="env.pos.get_client().vat">
+                    <div style="font-weight:bold;">RNC:
+                        <t t-esc="env.pos.get_client().vat" />
+                    </div>
+                </t>
+                <br/>
+                <div class="pos-receipt-center-align dotted_ticket_title">
+                        <strong>Factura de
+                            <t id="type_ncf" t-esc="receipt.l10n_latam_document_type_id"/>
+                        </strong>
+                        <br/>
+                        <strong>NCF:
+                            <t id="number_ncf" t-esc="receipt.l10n_latam_document_number"/>
+                        </strong>
+                </div>
+                <!-- <t t-if="receipt.l10n_latam_document_type_id and receipt.l10n_latam_document_number">
+                    <div class="pos-receipt-center-align dotted_ticket_title">
+                        <strong>Factura de
+                            <t t-esc="receipt.l10n_latam_document_type_id.name"/>
+                        </strong>
+                        <br/>
+                        <strong>NCF:
+                            <t t-esc="receipt.l10n_latam_document_number"/>
+                        </strong>
+                        <t t-if="receipt.l10n_do_is_return_order">
+                            <br/>
+                            <strong>NCF Modificado:
+                                <t t-esc="receipt.l10n_do_origin_ncf"/>
+                            </strong>
+                        </t>
+                        <t t-if="receipt.l10n_latam_document_type.doc_code_prefix != 'B02'">
+                            <br/>
+                            <strong>Válida hasta:
+                                <t t-esc="receipt.l10n_do_ncf_expiration_date"/>
+                            </strong>
+                        </t>
+                    </div>
+                </t> -->
+                
+            </t>
+        </xpath>
+    </t>
+</templates>
