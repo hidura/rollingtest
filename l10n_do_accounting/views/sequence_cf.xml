@@ -1,0 +1,74 @@
+<odoo>
+    <record id="sequence_cf_generation" model="ir.actions.act_window">
+        <field name="name">Control de secuencias fiscales</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sequence.cf</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Adjunta tus secuencias fiscales
+          </p><p>
+
+          </p>
+        </field>
+    </record>
+    <record id="sequence_cf_tree_view" model="ir.ui.view">
+        <field name="name">sequence.cf.tree</field>
+        <field name="model">sequence.cf</field>
+        <field name="arch" type="xml">
+            <tree string="Secuencias fiscales" multi_edit="1">
+                <field name="l10n_latam_document_type_id" string="Tipo de Comprobante"/>
+                <field name="current_sequence" string="Actual secuencia" readonly="1"/>
+                <field name="limit" string="Limite" readonly="1"/>
+                <field name="alarm_ncf" string="Avisar al llegar al número" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem
+        id="cf_sequence"
+        name="Secuencias de Comprobantes fiscales"
+        sequence="3"
+        parent="account.menu_finance_configuration"
+        action="sequence_cf_generation"/>
+
+
+    <record id="sequence_cf_move_generation" model="ir.actions.act_window">
+        <field name="name">Control de movimiento de secuencias fiscales</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sequence.cf.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Adjunta tus secuencias fiscales
+          </p><p>
+
+          </p>
+        </field>
+    </record>
+    <record id="sequence_cf_move_tree_view" model="ir.ui.view">
+        <field name="name">sequence.cf.move.tree</field>
+        <field name="model">sequence.cf.move</field>
+        <field name="arch" type="xml">
+            <tree string="Secuencias fiscales" multi_edit="1">
+                <field name="name" string="Numero de comprobante fiscal"/>
+                <field name="l10n_latam_document_type_id" string="Tipo de comprobante"/>
+                <field name="cf_sequence" string="Secuencia" readonly="1"/>
+                <field name="account_move" string="Movimiento contable" readonly="1"/>
+                <field name="pos_order" string="Orden POS" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem
+        id="move_sequence"
+        name="Movimientos de Comprobantes fiscales"
+        sequence="3"
+        parent="account.menu_finance_configuration"
+        action="sequence_cf_move_generation"/>
+
+
+
+
+
+</odoo>

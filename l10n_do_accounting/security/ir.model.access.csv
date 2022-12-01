@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_move_cancel,access_account_move_cancel,model_account_move_cancel,account.group_account_invoice,1,1,1,0
+access_l10n_do_account_journal_document_type,access_l10n_do_account_journal_document_type,model_l10n_do_account_journal_document_type,base.group_user,1,1,1,1
+l10n_do_accounting.access_sequence_cf,access_sequence_cf,l10n_do_accounting.model_sequence_cf,base.group_user,1,1,1,0
+l10n_do_accounting.access_sequence_cf_move,access_sequence_cf_move,l10n_do_accounting.model_sequence_cf_move,base.group_user,1,1,1,0
