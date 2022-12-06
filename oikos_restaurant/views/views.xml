@@ -56,5 +56,23 @@
     <menuitem name="Server to list" id="oikos_restaurant" parent="oikos_restaurant.menu_2"
               action="oikos_restaurant.action_server"/>
 -->
+
+
+    <record id="pos_config_view_form_variant" model="ir.ui.view"> 
+        <field name="name">product.category.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[@name='first']" position="after">
+                <group name="name_printer" col="2">
+                    <label for="printer_name" string="Nombre de la impresora"/>
+                    <field name="printer_name"/>
+                </group>
+            </xpath>
+            
+        </field>
+    </record>
+
   </data>
 </odoo>

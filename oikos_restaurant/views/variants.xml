@@ -14,7 +14,7 @@
             </field>
         </record> -->
 
-        <record id="pos_config_view_form_variant" model="ir.ui.view"> 
+        <!-- <record id="pos_config_view_form_variant" model="ir.ui.view"> 
             <field name="name">restaurant.floor.form.variant</field>
             <field name="model">restaurant.floor</field>
             <field name="inherit_id" ref="pos_restaurant.view_restaurant_floor_form"/>
@@ -25,7 +25,7 @@
                     <field name="fiscal_position_id"/>
                 </field>
             </field>
-        </record>
+        </record> -->
 
 
         <record id="pos_config_view_form_pos_sale" model="ir.ui.view"> 
@@ -103,6 +103,7 @@
               
           </field>
       </record>
+
         <record model="ir.ui.view" id="product_normal_form_view">
             <field name="name">product.product.view.form.easy</field>
             <field name="model">product.product</field>
@@ -195,31 +196,52 @@
         </record>
 
         <record id="pos_attribute_action" model="ir.actions.act_window">
-            <field name="name">Attributes</field>
+            <field name="name">Variantes</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">pos.product.attribute</field>
-            <field name="view_mode">tree</field>
+            <field name="res_model">product.variant</field>
+            <field name="view_mode">tree,form</field>
         </record>
-
-        <record id="pos_variants_tree_view" model="ir.ui.view">
-            <field name="name">pos.product.attribute.value.tree</field>
-            <field name="model">pos.product.attribute.value</field>
+        
+        <record id="pos_product_variant_view_form" model="ir.ui.view">
+            <field name="name">product.variant.form</field>
+            <field name="model">product.variant</field>
             <field name="arch" type="xml">
-                <tree string="Variant Values" editable="top">
-                    <field name="sequence" widget="handle"/>
-                    <field name="attribute_id"/>
-                    <field name="product_id"/>
-                    <field name="name"/>
-                </tree>
+                <form string="Producto variantes">
+                    <group>
+                        <group name="main_fields">
+                            <label for="product_id" string="Producto"/>
+                            <field name="product_id" nolabel="1"/>
+                        </group>
+                    </group>
+                    <group name="values_ids">
+                        <label for="lines" string="Valores"/>
+                        <field name="lines" widget="one2many_list" nolabel="1">
+                            <tree string="Valores" editable="bottom">
+                                <field name="name"/>
+                                <field name="product_target"/>
+                                <field name="price"/>
+                                <field name="amount_to_choose"/>
+                                <field name="type"/>
+                                <field name="is_limited"/>
+                                <field name="is_required"/>
+                                <field name="sequence"/>
+                            </tree>
+                            <form string="Valores">
+                                <field name="name"/>
+                                <field name="product_target"/>
+                                <field name="price"/>
+                                <field name="amount_to_choose"/>
+                                <field name="type"/>
+                                <field name="is_limited"/>
+                                <field name="is_required"/>
+                                <field name="sequence"/>
+                            </form>
+                        </field>
+                    </group>
+                </form>
             </field>
         </record>
 
-        <record id="pos_variants_action" model="ir.actions.act_window">
-            <field name="name">Attribute Values</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">pos.product.attribute.value</field>
-            <field name="view_mode">tree</field>
-        </record>
 
         <!-- <record id="pos_document_pos_print_action" model="ir.actions.act_window">
             <field name="name">Pos Document Print Action</field>
@@ -229,27 +251,11 @@
         </record> -->
 
         <menuitem id="pos_prod_config_main" name="Products" parent="point_of_sale.menu_point_config_product" sequence="10"/>
-        <menuitem action="pos_attribute_action" id="menu_pos_attribute_action" parent="pos_prod_config_main" sequence="4" />
-        <menuitem action="pos_variants_action" id="menu_pos_variants_action" parent="pos_prod_config_main" sequence="5"/>
+        <menuitem action="pos_attribute_action" id="menu_pos_attribute_action" parent="point_of_sale.menu_point_config_product" sequence="4" />
+        <!-- <menuitem action="pos_variants_action" id="menu_pos_variants_action" parent="pos_prod_config_main" sequence="5"/> -->
          <!-- <menuitem action="pos_document_pos_print_action" id="menu_pos_document_pos_print_action" parent="pos_prod_config_main" sequence="6"/> -->
 
 
-        <record id="pos_config_view_form_variant" model="ir.ui.view"> 
-            <field name="name">product.category.form</field>
-            <field name="model">product.category</field>
-            <field name="inherit_id" ref="product.product_category_form_view"/>
-            <field name="arch" type="xml">
-
-                <xpath expr="//group[@name='first']" position="after">
-                    <group name="name_printer" col="2">
-                        <label for="printer_name" string="Nombre de la impresora"/>
-                        <field name="printer_name"/>
-                    </group>
-                </xpath>
-                
-            </field>
-        </record>
-    
     
     </data>
 </odoo>

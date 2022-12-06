@@ -79,6 +79,38 @@ class product_product(models.Model):
     pos_product_varient_id = fields.One2many('pos.product.attribute.line','product_ids',string="Product Varient")
     attribute_id = fields.Many2one('pos.product.attribute', 'Attribute', ondelete='cascade')
 
+class ProductVariant(models.Model):
+    _name = 'product.variant'
+    _rec_name = 'product_id'
+    
+    product_id = fields.Many2one('product.product', 'Product', ondelete='cascade', required=True)
+    lines = fields.One2many('product.variant.line', 'product_variant', 
+                            string='Variants')
+    
+
+class PosProductAttributeLine(models.Model):
+    _name = "product.variant.line"
+    _description = "Product Attribute"
+    _order = 'sequence, name'
+
+    variant_type=[('companion','Companion'),
+                  ('optional','Optional'),
+                  ('suggested','Suggested'),
+                  ('term','Term')]
+    
+    name = fields.Char('Name', required=True, translate=True)
+    price = fields.Float("Price", delfault=0.00)
+    amount_to_choose = fields.Integer("Amount to choose")
+    type = fields.Selection(variant_type,string="Tipo")
+    product_variant = fields.Many2one('product.variant', 'lines', ondelete='cascade')
+    product_target = fields.Many2one('product.product', help="El producto que se mostrara como variante")
+    is_limited = fields.Boolean(string='Limited')
+    is_required = fields.Boolean(string='Required')
+    sequence = fields.Integer('Sequence', help="Determine the display order")
+
+
+    
+
 
 class PosConfig(models.Model):
     _inherit = "pos.config"
