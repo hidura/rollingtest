@@ -23,6 +23,7 @@
     "depends": [
         "base",
         "base_setup",
+        "point_of_sale"
     ],
 
     # # always loaded
@@ -32,6 +33,11 @@
         "data/ir_config_parameter_data.xml",
         
     ],
+    'assets': {
+    
+    'web.assets_backend': [
+        'bmsclient/static/src/js/*',
+    ]}
     # # only loaded in demonstration mode
     # 'demo': [
     #     'demo/demo.xml',
